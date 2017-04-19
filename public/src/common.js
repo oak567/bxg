@@ -61,6 +61,7 @@ define(['jquery', 'template' ,'cookie'], function ($,template) {
                 <h4><%= tc_name %></h4>';
     var render=template.compile(source);
     var html=render(loginfo);
+    //将拼凑好数据的HTML添加到DOM中
     $('.aside .profile').append(html);
 
     // 退出登录
