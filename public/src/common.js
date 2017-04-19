@@ -1,5 +1,5 @@
 
-define(['jquery', 'cookie'], function ($) {
+define(['jquery', 'template' ,'cookie'], function ($,template) {
     // 检测用户是否登录，如果没有登录则跳转至登录页
 
     // 如何检测用户是否登录了呢？
@@ -30,7 +30,38 @@ define(['jquery', 'cookie'], function ($) {
 
     // 获取用户的登录信息(被记录在了cookie中)
     var loginfo = $.cookie('loginfo') && JSON.parse($.cookie('loginfo'));
-    
+    // 将获取到的信息显示在页面中
+    // console.log(loginfo);
+    // $('.aside .profile img').attr('src',loginfo.tc_avatar);
+    // $('.aside .profile h4').text(loginfo.tc_name);
+    // 
+    // // 基于模板名渲染模板
+    // 第一个参数是模板所在DOM标签的ID
+    // 第二个参数是模板所需的数据（对象类型）
+    // template(filename, data);
+
+
+    // // 将模板源代码编译成函数
+    // 第一个参数是字符串形式的模板
+    // 第二个参数是配置选项，可以省略
+    // template.compile(source, options);
+    // 
+    // var tpl='<h1><%= name %></h1>';
+    // var data={name:'zs'};
+    // var render=template.compile(tpl);
+    // var html=render(data);
+    // console.log(html);
+
+    // // 将模板源代码编译成函数并立刻执行
+    // template.render(source, data, options);
+        
+    var source='<div class="avatar img-circle">\
+                    <img src="<%= tc_avatar %>">\
+                </div>\
+                <h4><%= tc_name %></h4>';
+    var render=template.compile(source);
+    var html=render(loginfo);
+    $('.aside .profile').append(html);
 
     // 退出登录
     $('#logout').on('click', function () {

@@ -1,4 +1,3 @@
-
 // 定义模块，此模块用来实现登录功能
 define(['jquery', 'cookie'], function ($) {
 
