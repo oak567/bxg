@@ -1,5 +1,7 @@
 
-define(['jquery', 'template' ,'cookie'], function ($,template) {
+define(['jquery', 'template' , 'nprogress' , 'cookie'], function ($,template,NProgress) {
+    NProgress.start();
+    NProgress.done();
     // 检测用户是否登录，如果没有登录则跳转至登录页
 
     // 如何检测用户是否登录了呢？
@@ -79,5 +81,10 @@ define(['jquery', 'template' ,'cookie'], function ($,template) {
             }
         })
     });
+
+    //导航栏交互
+    $('.navs ul').prev('a').on('click',function(){
+        $(this).next().slideToggle();
+    })
 
 })
