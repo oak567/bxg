@@ -22,9 +22,9 @@
                     <li class="active">讲师列表</li>
                 </ol>
                 <div class="page-title">
-                    <a href="./teacher_add.html" class="btn btn-success btn-sm pull-right">添加讲师</a>
+                    <a href="/teacher/manage" class="btn btn-success btn-sm pull-right">添加讲师</a>
                 </div>
-                <div class="panel panel-default">
+                <div class="panel panel-default" id='teacherList'>
                     <div class="panel-body">
                         <form action="" class="form-inline">
                             <div class="input-group">
@@ -48,19 +48,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>赵玉川</td>
-                                <td>布头儿</td>
-                                <td>28</td>
-                                <td>男</td>
-                                <td>15901256171</td>
-                                <td>
-                                    <a href="#teacherModal" data-toggle="modal" class="btn btn-info btn-xs">查 看</a>
-                                    <a href="./teacher_add.html" class="btn btn-info btn-xs">编 辑</a>
-                                    <a href="javascript::" class="btn btn-warning btn-xs">注 销</a>
-                                </td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -119,9 +107,31 @@
         </div>
     </div>
 
+    
     <?php include "./views/layout/scripts.html"; ?>
+    <script type='text/template' id='teacherTpl'>
+        {{each teachers}}
+            <tr>
+                <td>1</td>
+                <td>{{$value.tc_name}}</td>
+                <td>{{$value.tc_roster}}</td>
+                <td>{{$value.tc_birthday}}</td>
+                {{if $value.tc_gender==0}}
+                <td>男</td>
+                {{else}}
+                <td>女</td>
+                {{/if}}
+                <td>{{$value.tc_cellphone}}</td>
+                <td>
+                    <a href="#teacherModal" data-toggle="modal" class="btn btn-info btn-xs">查 看</a>
+                    <a href="/teacher/manage?tc_id={{$value.tc_id}}" class="btn btn-info btn-xs">编 辑</a>
+                    <a href="javascript:;" class="btn btn-warning btn-xs">注 销</a>
+                </td>
+            </tr>
+        {{/each}}
+    </script>
     <script>
-    require(['src/index/index']);
+    require(['src/teacher/index']);
     </script>
 </body>
 </html>
